@@ -27,6 +27,7 @@ LicenseFile=metadata\Licensia.rtf
 InfoBeforeFile=metadata\Descripcion.rtf
 InfoAfterFile=metadata\Post_Instalacion.rtf
 SetupIconFile=metadata\favicon.ico
+UninstallDisplayIcon={app}\favicon.ico
 OutputDir=build\installer
 OutputBaseFilename=local-tunes-v{#MyAppVersion}-Universal
 SolidCompression=yes
@@ -39,6 +40,7 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
+Source: "metadata\favicon.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; --- RUNTIME PARA 64 BITS (Solo se copia si Windows es x64) ---
 Source: "build\v{#MyAppVersion}\win-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
 Source: "build\v{#MyAppVersion}\win-x64\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
