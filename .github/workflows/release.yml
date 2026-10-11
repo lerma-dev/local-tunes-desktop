@@ -31,9 +31,11 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore localtunes.csproj
 
-      - name: Publish .NET App (x64 & x86)
+      - name: Publish .NET App (x64)
         run: |
           dotnet publish localtunes.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:PublishTrimmed=false -o "build/v${{ env.APP_VERSION }}/win-x64"
+      - name: Publish .NET App (x86)
+        run: |
           dotnet publish localtunes.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -p:PublishReadyToRun=true -p:PublishTrimmed=false -o "build/v${{ env.APP_VERSION }}/win-x86"
 
       - name: Install Inno Setup
