@@ -1,0 +1,52 @@
+name: Build and Release Installer
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.x'
+
+      - name: Extract App Version from csproj
+        id: get_version
+        shell: powershell
+        run: |
+          [xml]$csproj = Get-Content .\localtunes.csproj
+          $version = $csproj.Project.PropertyGroup.Version
+          if (-not $version) { $version = "1.0.0" }
+          Add-Content -Path $env:GITHUB_ENV -Value "APP_VERSION=$version"
+          Write-Output "Building version: $version"
+
+      - name: Restore dependencies
+        run: dotnet restore localtunes.csproj
+
+      - name: Publish .NET App (x64 & x86)
+        run: |
+          dotnet publish localtunes.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false -o build/v${{ env.APP_VERSION }}/win-x64
+          dotnet publish localtunes.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=false -o build/v${{ env.APP_VERSION }}/win-x86
+
+      - name: Install Inno Setup
+        run: |
+          winget install JRSoftware.InnoSetup --accept-source-agreements --accept-package-agreements
+
+      - name: Compile Inno Setup Script
+        shell: powershell
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion="${{ env.APP_VERSION }}" setup.iss
+
+      - name: Upload Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: LocalTunes-Setup-v${{ env.APP_VERSION }}
+          path: build/installer/*.exe

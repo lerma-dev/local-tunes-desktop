@@ -3,7 +3,9 @@
 ; Non-commercial use only
 
 #define MyAppName "Local Tunes"
-#define MyAppVersion "1.0.0"
+#ifndef MyAppVersion
+  #define MyAppVersion "1.0.0"
+#endif
 #define MyAppPublisher "lerma-dev"
 #define MyAppURL "https://github.com/lerma-dev/local-tunes-desktop"
 #define MyAppExeName "localtunes.exe"
@@ -26,7 +28,7 @@ InfoBeforeFile=metadata\Descripcion.rtf
 InfoAfterFile=metadata\Post_Instalacion.rtf
 SetupIconFile=metadata\favicon.ico
 OutputDir=build\installer
-OutputBaseFilename=local-tunes_x64_x86
+OutputBaseFilename=local-tunes-v{#MyAppVersion}-Universal
 SolidCompression=yes
 WizardStyle=modern dynamic
 
