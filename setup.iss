@@ -40,16 +40,16 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; --- RUNTIME PARA 64 BITS (Solo se copia si Windows es x64) ---
-Source: "build\v1.0\win-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
-Source: "build\v1.0\win-x64\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
-Source: "build\v1.0\win-x64\runtimes\*"; DestDir: "{app}\runtimes\win-x64"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: IsWin64
+Source: "build\v{#MyAppVersion}\win-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
+Source: "build\v{#MyAppVersion}\win-x64\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: IsWin64
+Source: "build\v{#MyAppVersion}\win-x64\runtimes\*"; DestDir: "{app}\runtimes\win-x64"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: IsWin64
 
 ; --- RUNTIME PARA 32 BITS (Solo se copia si Windows es x86) ---
-Source: "build\v1.0\win-x86\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: not IsWin64
-Source: "build\v1.0\win-x86\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not IsWin64
-Source: "build\v1.0\win-x86\runtimes\*"; DestDir: "{app}\runtimes\win-x86"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: not IsWin64
+Source: "build\v{#MyAppVersion}\win-x86\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: not IsWin64
+Source: "build\v{#MyAppVersion}\win-x86\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not IsWin64
+Source: "build\v{#MyAppVersion}\win-x86\runtimes\*"; DestDir: "{app}\runtimes\win-x86"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: not IsWin64
 
-[Icons]
+[Icons]A
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
