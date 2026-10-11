@@ -45,8 +45,11 @@ jobs:
         run: |
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion="${{ env.APP_VERSION }}" setup.iss
 
-      - name: Upload Installer Artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload Installer to GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: LocalTunes-Setup-v${{ env.APP_VERSION }}
-          path: build/installer/*.exe
+          files: build/installer/*.exe
+          name: Local Tunes v${{ env.APP_VERSION }}
+          body: "Instalador oficial de Local Tunes para Windows (x64 / x86)."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
