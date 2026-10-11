@@ -49,7 +49,7 @@ Source: "build\v{#MyAppVersion}\win-x86\{#MyAppExeName}"; DestDir: "{app}"; Flag
 Source: "build\v{#MyAppVersion}\win-x86\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: not IsWin64
 Source: "build\v{#MyAppVersion}\win-x86\runtimes\*"; DestDir: "{app}\runtimes\win-x86"; Flags: ignoreversion recursesubdirs createallsubdirs; Check: not IsWin64
 
-[Icons]A
+[Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
