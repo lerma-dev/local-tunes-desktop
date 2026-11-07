@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Local Tunes</title>
+    <script>
+      if (window.chrome && window.chrome.webview) {
+        document.documentElement.classList.add("native-app");
+      }
+      const version = async () => {
+        try {
+          const res = await fetch("./version.json");
+          const data = await res.json();
+          localStorage.setItem("AppVersion", data.version);
+        }catch (e) {
+          console.error("Error al obtener la versión:", e);
+        }
+      }
+      version();
+    </script>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+  </head>
+  <body>
+    <!-- Title Bar -->
+    <div id="desktop-titlebar" class="custom"></div>
+    <!-- Application Content -->
+    <div id="app"></div>
+    <audio id="audio-engine"></audio>
+    <!-- JavaScripts -->
+    <script src="./scripts/icons.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
+  </body>
+</html>

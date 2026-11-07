@@ -1,0 +1,86 @@
+/* styles/base/themes.css */
+[data-theme="light"] {
+  /* Barra de titulo custom para ejecutable de windows #e0d0ff */
+  --bg-btn-hover-light: rgba(0, 0, 0, 0.1);
+  --bg-titlebar-custom: #ede9ff;      
+  --text-titlebar-custom: #2b1f6b;     
+  --border-bottom-titlebar: 1px solid rgba(40, 30, 80, 0.1);
+  --bg-btn-ctrl: #f1eff7;             
+  --border-btn-ctrl: 1px solid #7c5dfa;
+  --color-btn-ctrl: #7c5dfa;       
+  --shadow-btn-ctrl: rgba(124, 93, 250, 0.2);
+  --color-icons-ctrl: #3f1579;
+  --line-divider: #3d1379;
+  /* temas generales */
+  --bg: #f4f2ff;
+  --bg-secondary: #ede9ff;
+  --card-bg: rgba(0,0,0,0.04);
+  --card-bg-hover: rgba(0,0,0,0.07);
+  --player-bg: #ede9ff;
+  --text: #1a1530;
+  --text-dim: rgb(17, 9, 53);
+  --text-muted: rgba(22, 5, 83, 0.877);
+
+  --glass: rgba(0,0,0,0.04);
+  --glass-border: rgba(40,30,80,0.1);
+  --glass-strong: rgba(167, 139, 250, 0.12);
+
+  --linear-gradient: linear-gradient(180deg, #ede9ff 0%, #f4f2ff 100%);
+
+  --scrollbar-thumb-bg: rgba(167, 139, 250, 0.3);
+  --scrollbar-thumb-hover: rgba(167, 139, 250, 0.55);
+
+  --shadow-sm: 0 2px 12px rgba(100,80,180,0.1);
+  --shadow-md: 0 8px 32px rgba(100,80,180,0.15);
+  --shadow-glow: 0 0 40px rgba(167, 139, 250, 0.2);
+
+  /* Mini player */
+  --mini-player-bg: rgba(237, 233, 255, 0.92);
+  --mini-player-shadow: 0 -8px 40px rgba(136, 136, 136, 0.781), 0 -1px 0 rgba(167,139,250,0.12);
+
+  /* Modal */
+  --modal-bg: linear-gradient(145deg, #ede9ff, #e5e0ff);
+  --modal-overlay: rgba(20, 15, 50, 0.45);
+  --settings-overlay: rgba(100, 80, 160, 0.25);
+  --color-text: #000;
+}
+
+[data-theme="dark"] {
+  /* Barra de titulo custom para ejecutable de windows #4f3db4 #a176ff;*/
+  --bg-btn-hover-light: rgba(255, 255, 255, 0.2);
+  --bg-titlebar-custom:  #0e0c1a;
+  --text-titlebar-custom: #fff;
+  --border-bottom-titlebar: 1px solid  rgba(255, 255, 255, 0.08);
+  --bg-btn-ctrl: #2a114d;
+  --border-btn-ctrl: 1px solid rgba(161, 118, 255, 0.3); 
+  --color-btn-ctrl: #a176ff; 
+  --shadow-btn-ctrl: rgba(161, 118, 255, 0.15); 
+  --color-icons-ctrl: #3f1579;
+  --line-divider: #b077ff;
+  /* temas generales */
+  --bg: #08070f;
+  --bg-secondary: #0e0c1a;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-bg-hover: rgba(255, 255, 255, 0.07);
+  --player-bg: #0d0b1c;
+  --text: #f0eeff;
+  --text-dim: rgba(240, 235, 255, 0.836);
+  --text-muted: rgba(195, 184, 238, 0.877);
+
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(167, 139, 250, 0.08);
+
+  --linear-gradient: linear-gradient(180deg, #130f22 0%, #08070f 100%);
+
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-md: 0 8px 32px rgba(0,0,0,0.55);
+  --shadow-glow: 0 0 40px rgba(167, 139, 250, 0.18);
+
+  --mini-player-bg: rgba(13, 11, 28, 0.85);
+  --mini-player-shadow: 0 -8px 40px rgba(100,80,180,0.1), 0 -1px 0 rgba(167,139,250,0.12);
+  --modal-bg: linear-gradient(145deg, #1a1735, #0f0d20);
+  --modal-overlay: rgba(4, 3, 12, 0.75);
+  --settings-overlay: rgba(0, 0, 0, 0.6);
+  --color-text: #fff;
+}

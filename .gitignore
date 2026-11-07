@@ -1,0 +1,11 @@
+# Archivos de usuario e IDE local
+*.user
+*.suo
+.vs/
+.vscode/
+Data/
+
+# Salidas de compilación
+build/
+bin/
+obj/

@@ -1,0 +1,88 @@
+<!-- MODALS -->
+<section id="modals-section">
+    <!-- MODAL de la pantalla 2 -->
+    <div id="playlist-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal();">
+                <l-icon name="close"></l-icon>
+            </span>
+            <h3>Crear nueva Playlist</h3>
+            <input 
+                type="text" 
+                id="playlist-name" 
+                class="playlist-name" 
+                placeholder="Nombre de la playlist"
+            >
+            <button id="save-playlist" onclick="Btn_savePlaylist();">Guardar</button>
+            
+            <div id="existing-playlists-container"></div>
+        </div>
+    </div>
+
+    <!-- MODAL de la pantalla 3 -->
+    <div id="playlist-modal-view" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalView();">
+                <l-icon name="close"></l-icon>
+            </span>
+            <h3>Crear nueva Playlist</h3>
+            <input 
+                type="text" 
+                id="playlist-name-view" 
+                class="playlist-name" 
+                placeholder="Nombre de la playlist"
+            >
+            <button id="save-playlist-view" onclick="Btn_savePlay();">Crear Playlist</button>
+        </div>
+    </div>
+
+    <!-- MODAL Editar Datos de Canción -->
+    <div id="edit-song-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeEditSongModal();">
+                <l-icon name="close"></l-icon>
+            </span>
+            <h3>Editar Canción</h3>
+            <input type="text" id="edit-song-title" class="playlist-name" placeholder="Nombre de la canción">
+            <input type="text" id="edit-song-artist" class="playlist-name" placeholder="Artista">
+            <button id="save-edit-song" onclick="saveEditSong();">Guardar cambios</button>
+        </div>
+    </div>
+
+    <!-- MODAL Confirmar Eliminación -->
+    <div id="confirm-delete-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeConfirmDeleteModal();">
+                <l-icon name="close"></l-icon>
+            </span>
+            <div class="confirm-delete-icon"><l-icon name="trash"></l-icon></div>
+            <h3>¿Estás seguro?</h3>
+            <p id="confirm-delete-msg">¿Deseas eliminar esta canción?</p>
+            <div class="confirm-delete-actions">
+                <button class="confirm-btn confirm-btn--cancel" onclick="closeConfirmDeleteModal();">Cancelar</button>
+                <button class="confirm-btn confirm-btn--danger" id="confirm-delete-ok">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEXT MENU DROPDOWN (tres puntitos) -->
+    <div id="song-context-menu" class="song-ctx-menu" style="display:none;" aria-hidden="true">
+        <button class="ctx-option" id="ctx-edit-btn">
+            <l-icon name="edit-metadata"></l-icon>
+            <p></p>
+            Editar datos
+            <p></p>
+            <p></p>
+        </button>
+        <button class="ctx-option" id="ctx-playlist-btn" style="display:none;">
+            <l-icon name="add-outline"></l-icon>
+            Agregar a playlist
+        </button>
+        <button class="ctx-option ctx-option--danger" id="ctx-delete-btn">
+            <l-icon name="trash-outline"></l-icon>
+            <span id="ctx-delete-label">Eliminar canción</span>
+        </button>
+    </div>
+    <div id="song-ctx-overlay" style="display:none; position:fixed; inset:0; z-index:490;"></div>
+
+</section>

@@ -1,0 +1,217 @@
+<!-- SETTINGS -->
+<section id="settings_section" style="display: none;">
+  <!-- OVERLAY -->
+  <div class="settings-overlay" id="settings-overlay"></div>
+
+  <!-- SETTINGS ASIDE -->
+  <aside class="settings-panel" id="settings-panel" aria-label="Ajustes">
+    <div class="settings-panel__header">
+      <span class="settings-panel__title">
+        <l-icon name="settings"></l-icon>
+        Ajustes
+      </span>
+      <button class="settings-panel__close" id="settings-close-btn" title="Cerrar (Esc)">
+        <l-icon name="close"></l-icon>
+      </button>
+    </div>
+
+    <div class="settings-panel__body">
+      <!-- Reproducción -->
+      <div class="settings-group">
+        <div class="settings-group__label">Reproducción</div>
+
+        <div class="settings-row" id="setting-shuffle">
+          <div class="settings-row__icon">
+            <l-icon name="shuffle"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Aleatorio</div>
+            <div class="settings-row__desc">Mezclar orden de canciones</div>
+          </div>
+          <label class="settings-toggle">
+            <input type="checkbox" id="toggle-shuffle">
+            <span class="settings-toggle__track"></span>
+          </label>
+        </div>
+
+        <div class="settings-row" id="setting-repeat">
+          <div class="settings-row__icon">
+            <l-icon name="repeat-one"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Repetir</div>
+            <div class="settings-row__desc">Repetir una canción</div>
+          </div>
+          <label class="settings-toggle">
+            <input type="checkbox" id="toggle-repeat">
+            <span class="settings-toggle__track"></span>
+          </label>
+        </div>
+
+        <div class="settings-row">
+          <div class="settings-row__icon">
+            <l-icon name="ecualizer"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Ecualizador</div>
+            <div class="settings-row__desc">Ajustar frecuencias de audio</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- Apariencia -->
+      <div class="settings-group">
+        <div class="settings-group__label">Apariencia</div>
+
+        <div class="settings-row" id="setting-theme">
+          <div class="settings-row__icon">
+            <l-icon name="mode-dark" id="theme-icon"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Tema oscuro</div>
+            <div class="settings-row__desc">Cambiar entre claro y oscuro</div>
+          </div>
+          <label class="settings-toggle" name="toggle-theme">
+            <input type="checkbox" id="toggle-theme" checked>
+            <span class="settings-toggle__track"></span>
+          </label>
+        </div>
+
+        <div class="settings-row titlebar-style-row" id="setting-titlebar-style">
+          <div class="settings-row__icon">
+            <l-icon name="color-palette"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <h2 class="settings-row__label">Estilos de Barra</h2>
+            <p class="settings-row__desc">Elige el estilo visual de la barra de titulo.</p>
+          </div>
+
+          <div role="menu" aria-label="Estilos de barra de título"
+            class="titlebar-style-dropdown" id="titlebar-style-dropdown" >
+            <button role="menuitem" class="titlebar-style-option" data-style="custom">
+              <l-icon name="color-wand" aria-hidden="true"></l-icon> Custom
+            </button>
+            <button role="menuitem" class="titlebar-style-option" data-style="macos">
+              <l-icon name="logo-apple" aria-hidden="true"></l-icon> MacOS
+            </button>
+            <button role="menuitem" class="titlebar-style-option" data-style="linux">
+              <l-icon name="logo-tux" aria-hidden="true"></l-icon>&nbsp;Linux&nbsp;
+            </button>
+            <button role="menuitem" class="titlebar-style-option" data-style="native">
+              <l-icon name="hardware-chip" aria-hidden="true"></l-icon> Nativo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- Biblioteca -->
+      <div class="settings-group">
+        <div class="settings-group__label">Biblioteca</div>
+
+        <div class="settings-row">
+          <div class="settings-row__icon">
+            <l-icon name="musical-notes"></l-icon>
+          </div>
+          <div class="settings-row__text" id="btn_settings_library">
+            <div class="settings-row__label">Formatos admitidos</div>
+            <div class="settings-row__desc"> MP3, FLAC, OGG, WAV, M4A y más</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- General -->
+      <div class="settings-group">
+        <div class="settings-group__label">General</div>
+
+        <!-- Respaldos -->
+        <div class="settings-row backup-row" id="backup-row">
+          <div class="settings-row__icon">
+            <l-icon name="save"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Respaldo</div>
+            <div class="settings-row__desc">Exportar o importar datos</div>
+          </div>
+          <span class="settings-row__arrow backup-arrow" id="backup-arrow" >
+            <l-icon name="chevron-down"></l-icon>
+          </span>
+
+          <!-- Dropdown custom -->
+          <div class="backup-dropdown" id="backup-dropdown" aria-hidden="true">
+            <button class="backup-option" data-action="export">
+              <l-icon name="save"></l-icon>
+              Exportar
+            </button>
+            <button class="backup-option" data-action="import">
+              <l-icon name="folder-open"></l-icon>
+              Importar
+            </button>
+          </div>
+        </div>
+        <input type="file" id="import-file-input" accept=".json" hidden>
+
+        <!-- Mi Portal -->
+        <div class="settings-row" onclick="window.open('https://lerma-dev.vercel.app', '_blank')">
+          <div class="settings-row__icon">
+            <l-icon name="globe-outline"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Mi Portal</div>
+            <div class="settings-row__desc">Conoce más sobre mis proyectos</div>
+          </div>
+        </div>
+
+        <!-- Acerca de -->
+        <div class="settings-row">
+          <div class="settings-row__icon">
+            <l-icon name="info"></l-icon>
+          </div>
+          <div class="settings-row__text" id="btn_settings_aboutMe">
+            <div class="settings-row__label">Acerca de</div>
+            <div class="settings-row__desc">Versiónes y licencias</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-divider"></div>
+      
+      <!-- Zona Destructiva -->
+      <div class="settings-group">
+        <div class="settings-group__label">Zona Destructiva</div>
+        <!-- Borrar -->
+        <div class="settings-row">
+          <div class="settings-row__icon">
+            <l-icon name="trash"></l-icon>
+          </div>
+          <div class="settings-row__text" id="clear-db-btn">
+            <div class="settings-row__label">Borrar Carpetas</div>
+            <div class="settings-row__desc">Se quitarán las carpetas de la biblioteca</div>
+          </div>
+        </div>
+
+        <!-- Papelera -->
+        <div class="settings-row" id="setting-trash">
+          <div class="settings-row__icon">
+            <l-icon name="trash-bin"></l-icon>
+          </div>
+          <div class="settings-row__text">
+            <div class="settings-row__label">Papelera</div>
+            <div class="settings-row__desc">Canciones eliminadas (se borran a los 30 días)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-panel__footer" id="footer-settings">
+      <span class="settings-panel-version" id="version_app"></span>
+    </div>
+  </aside>
+</section>
+

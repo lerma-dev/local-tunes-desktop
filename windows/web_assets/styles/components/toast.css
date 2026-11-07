@@ -1,0 +1,194 @@
+/* Toast */
+.content-toast {
+  position: fixed;
+  z-index: 10001;
+  pointer-events: none;
+  display: flex;
+  color: #fff;
+  bottom: 20px; 
+  right: 20px;
+  width: 100%;
+  max-width: 400px;
+  flex-direction: column-reverse;
+  gap: 15px;
+}
+
+/* 
+  En el .exe: nunca dejar que la pila de toasts crezca por encima de la
+  barra de título custom (32px). En navegador/PWA no aplica. 
+*/
+html.native-app .content-toast {
+  max-height: calc(100vh - 30px - 40px);
+  overflow: hidden;
+}
+
+.toast {
+  background: #ccc;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  animation: apertura 500ms ease-out;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.toast .content-info {
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+.toast.exito {
+  background: #5b22b6;
+}
+
+.toast.error {
+  background: #c2336e;
+}
+
+.toast.info {
+  background: #1666c2;
+}
+
+.toast.warning {
+  background: #a3842f;
+}
+
+.toast .btn_close {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  padding: 0px 5px;
+}
+
+.toast .btn_close:hover {
+  background: rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease all;
+}
+
+.toast .type-icon l-icon {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.toast .icono l-icon {
+  color: #fff;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+.toast .titulo {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.toast .descripcion {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 1rem;
+  max-width: 100%;
+}
+
+@keyframes apertura {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toast.cerrando {
+  animation: cierre 1s ease-out forwards;
+}
+
+@keyframes cierre {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100% + 20px));
+  }
+}
+
+.toast.auto_close::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  animation: progressBar 2s ease-out forwards;
+}
+
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Vista del Toast para celular */
+@media (max-width: 599px) {
+  .content-toast {
+    bottom: auto; 
+    top: 15px;
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 300px;
+    flex-direction: column;
+  }
+
+  html.native-app .content-toast {
+    top: 40px;
+    max-height: calc(100vh - 30px - 55px);
+  }
+
+  .toast {
+    background: #ccc;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    animation: apertura 500ms ease-in-out;
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  .toast .content-info {
+    display: grid;
+    grid-template-columns: 40px auto;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .toast .titulo {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .toast .descripcion {
+    font-size: 0.8rem;
+  }
+
+  @keyframes cierre {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(100% + 50%));
+    }
+  }
+}

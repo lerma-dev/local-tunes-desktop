@@ -1,0 +1,34 @@
+<!-- SIDEBAR DESKTOP-->
+<aside class="app-sidebar" id="app-sidebar">
+  <div class="sidebar-brand">
+    <h1>Mi Música</h1>
+    <p>Reproductor local</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button class="sidebar-nav-btn nav-active" id="nav-main" onclick="showMainView()">
+      <l-icon name="folder-outline"></l-icon>
+      Biblioteca
+    </button>
+    <button class="sidebar-nav-btn" id="nav-allSongs" onclick="showAllSongs()">
+      <l-icon name="songs-outline"></l-icon>
+      Canciones
+    </button>
+    <button class="sidebar-nav-btn" id="nav-favs" onclick="showFavoritesView()">
+      <l-icon name="heart-outline"></l-icon>
+      Favoritos
+    </button>
+    <button class="sidebar-nav-btn" id="nav-playlists" onclick="showPlaylistsView()">
+      <l-icon name="playlist-outline"></l-icon>
+      Playlists
+    </button>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-label">Agregar música</div>
+
+  <button type="button" onclick="window.nativeAddFolder()" class="sidebar-import-btn">
+    <l-icon name="folder-open"></l-icon>
+    Importar Biblioteca
+  </button>
+</aside>

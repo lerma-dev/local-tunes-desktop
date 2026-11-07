@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="lerma-tech">
+  <g transform="matrix(0.820174, 0, 0, 0.81015, 27.625931, 62.116959)">
+    <rect width="337.107" height="342.969" x="71.135" y="112.608" rx="48" ry="48" stroke-linejoin="round" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 32px;"/>
+    <g transform="matrix(1, 0, 0, 1, -0.330252, -4.780082)">
+      <line style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 32px;" x1="187.353" y1="28.518" x2="414.551" y2="27.838"/>
+      <path style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 32px;" d="M 403.229 27.912 C 403.229 27.912 435.083 28.142 439.794 28.367 C 444.567 28.595 450.797 28.372 455.083 29.517 C 458.838 30.52 461.6 31.44 464.498 33.425 C 467.198 35.274 469.059 36.729 471.155 39.247 C 473.364 41.9 475.456 43.5 476.894 46.377 C 478.094 48.779 480.895 53.543 481.617 56.218 C 482.533 59.614 482.692 63.511 483.154 67.542 C 483.632 71.714 483.408 77.753 483.461 80.696 C 483.488 82.236 483.612 85.126 483.612 85.126 L 486.087 292.005"/>
+    </g>
+  </g>
+</svg>

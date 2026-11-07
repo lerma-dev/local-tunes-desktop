@@ -1,0 +1,41 @@
+<!-- 1. PANTALLA PRINCIPAL -->
+<section id="view-main" style="display: block">
+  <header class="detail-header">
+    <div class="header-content">
+      <div class="brand-text">
+        <h1>Biblioteca</h1>
+      </div>
+    </div>
+  </header>
+  
+  <main class="content">
+    <div class="import-section">
+      <button type="button" onclick="window.nativeAddFolder()" class="main-import-card">
+        <div class="import-icon">
+          <l-icon name="folder-open"></l-icon>
+        </div>
+        <div class="import-info">
+          <strong>Agregar Música</strong>
+          <p>Seleccionar Biblioteca</p>
+        </div>
+      </button>
+    </div>
+
+    <div class="section-divider">
+      <span>Bibliotecas importadas</span>
+      <div class="line"></div>
+      <button
+        type="button"
+        id="refresh-library-btn"
+        class="library-refresh-btn"
+        title="Actualizar biblioteca"
+        aria-label="Actualizar biblioteca"
+      >
+        <l-icon name="refresh"></l-icon>
+        <span>Actualizar biblioteca</span>
+      </button>
+    </div>
+
+    <div id="detected-folders" class="folder-grid"></div>
+  </main>
+</section>

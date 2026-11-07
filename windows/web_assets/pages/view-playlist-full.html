@@ -1,0 +1,26 @@
+<!-- 4. PANTALLA FULL PLAYLIST -->
+<section id="view-playlist-full" style="display: none;">
+    <header class="detail-header">
+        <div class="header-content">
+            <button class="back-circle-btn" onclick="showPlaylistsView()">
+                <l-icon name="arrow-back"></l-icon>
+            </button>
+            <div class="header-info">
+                <h1>Playlists</h1>
+            </div>
+        </div>
+        <div class="header-bg-blob"></div>
+    </header>
+
+    <main class="content list-container">
+        <div class="list-stats" id="play-stats-info">Playlist • </div>
+        <div class="search-container">
+            <l-icon name="search"></l-icon>
+            <input 
+                placeholder="Buscar en playlist..."
+                type="search" 
+                class="search-song" id="play-song-search">
+        </div>
+        <ul id="playlist-song" class="song-list"></ul>
+    </main>
+</section>

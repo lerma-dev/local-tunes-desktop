@@ -1,0 +1,511 @@
+/* --- UTILIDAD PARA BLOQUEO DE SCROLL --- */
+#app.no-scroll {
+  overflow: hidden !important;
+  touch-action: none;
+}
+/* --- OVERLAY --- */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+  transition:
+    background 0.35s ease,
+    backdrop-filter 0.35s ease;
+  z-index: 200;
+}
+
+.settings-overlay.is-open {
+  background: var(--settings-overlay);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  pointer-events: all;
+}
+
+/* --- PANEL --- */
+.settings-panel {
+  position: fixed !important; 
+  top: 0 !important;
+  height: 100% !important;
+  right: 0;
+  bottom: 0;
+  width: min(300px, 88vw);
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--glass-border);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Estado CERRADO: fuera de pantalla a la derecha */
+  transform: translateX(100%);
+  transition:
+    transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.38s ease;
+}
+
+/* Estado ABIERTO */
+.settings-panel.is-open {
+  transform: translateX(0);
+  box-shadow:
+    -12px 0 48px rgba(0, 0, 0, 0.7),
+    0 0 0 1px var(--glass-border);
+}
+
+/* 
+  En el .exe, el panel debe empezar debajo de la barra de título custom
+  de 32px (es position:fixed, relativo al viewport real, que sí incluye
+  la zona de la barra de título).
+*/
+html.native-app .settings-panel {
+  top: 30px !important;
+  height: calc(100% - 30px) !important;
+}
+html.native-app .settings-overlay {
+  top: 30px;
+}
+html.native-app .settings-panel__header {
+  padding: 10px;
+}
+html.native-app .settings-panel__footer {
+  padding: 10px;
+}
+
+
+/* Línea glow en el borde izquierdo al abrir */
+.settings-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s 0.25s;
+}
+.settings-panel.is-open::before {
+  opacity: 0.7;
+}
+
+/* --- HEADER --- */
+.settings-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+
+.settings-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.settings-panel__title l-icon {
+  font-size: 1.2rem;
+  color: var(--accent);
+  -webkit-text-fill-color: initial;
+  flex-shrink: 0;
+}
+
+.settings-panel__close {
+  width: 32px;
+  height: 32px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+  cursor: pointer;
+}
+
+.settings-panel__close l-icon {
+  font-size: 1rem;
+  color: inherit;
+}
+
+.settings-panel__close:active {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--glass-strong);
+}
+
+/* --- BODY (scroll) --- */
+.settings-panel__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain; /* evita que el scroll "se filtre" al fondo al llegar al límite */
+  padding: 6px 0 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-bg) transparent;
+  user-select: none;
+}
+
+.settings-panel__body::-webkit-scrollbar {
+  width: 3px;
+}
+.settings-panel__body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg);
+  border-radius: 4px;
+}
+
+/* --- GROUP --- */
+.settings-group {
+  padding: 4px 0;
+}
+
+.settings-group__label {
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 16px 4px;
+  font-weight: 600;
+}
+
+/* --- ROW --- */
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  cursor: pointer;
+  transition: background 0.18s;
+  position: relative;
+}
+
+.settings-row:active {
+  background: var(--card-bg-hover);
+}
+
+/* Ripple visual en active */
+.settings-row:active .settings-row__icon {
+  background: var(--glass-strong);
+  border-color: var(--accent);
+}
+
+.settings-row__icon {
+  width: 36px;
+  height: 36px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.settings-row__icon l-icon {
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.settings-row__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-row__label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-row__desc {
+  font-size: 0.71rem;
+  color: var(--text-dim);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Flecha › */
+.settings-row__arrow {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.settings-row__arrow l-icon {
+  font-size: 0.9rem;
+  color: inherit;
+  transform: rotate(-90deg);
+}
+
+/* --- DIVIDER --- */
+.settings-divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 4px 16px;
+}
+
+/* --- TOGGLE SWITCH --- */
+.settings-toggle {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.settings-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.settings-toggle__track {
+  position: absolute;
+  inset: 0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+}
+
+.settings-toggle__track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.25s;
+}
+
+.settings-toggle input:checked + .settings-toggle__track {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.settings-toggle input:checked + .settings-toggle__track::after {
+  transform: translateX(18px);
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* --- FOOTER --- */
+.settings-panel__footer {
+  min-height: 0%;
+  padding: 12px 16px;
+  border-top: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.settings-panel-version {
+  display: block;
+  text-align: center;
+  user-select: none;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.8px;
+}
+
+/* --- BACKUP DROPDOWN --- */
+.backup-row {
+  position: relative;
+}
+
+.backup-arrow {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backup-row.is-open .backup-arrow {
+  transform: rotate(180deg);
+}
+
+.backup-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 12px;
+  min-width: 160px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(167, 139, 250, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  z-index: 400;
+
+  /* Estado cerrado */
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+  pointer-events: none;
+  transform-origin: top right;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backup-dropdown.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+.backup-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.backup-option:last-child {
+  border-bottom: none;
+}
+
+.backup-option l-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.backup-option:hover,
+.backup-option:focus-visible {
+  background: var(--glass-strong);
+  color: var(--accent);
+  outline: none;
+}
+
+/* POSICIONAMIENTO DE LA FILA */
+.titlebar-style-row {
+  position: relative;
+  cursor: pointer;
+}
+
+/* CONTAINER FLOATING (CLON DE RESPALDOS) */
+.titlebar-style-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 12px;
+  min-width: 160px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(167, 139, 250, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  z-index: 400;
+
+  /* Estado cerrado con tu animación custom */
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+  pointer-events: none;
+  transform-origin: top right;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.titlebar-style-dropdown.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* OPCIONES INTERNAS DEL DROPDOWN */
+.titlebar-style-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.titlebar-style-option:last-child {
+  border-bottom: none;
+}
+
+.titlebar-style-option l-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.titlebar-style-option:hover,
+.titlebar-style-option:focus-visible {
+  background: var(--glass-strong);
+  color: var(--accent);
+  outline: none;
+}
+
+/* Rotación del chevron cuando se abre */
+.titlebar-style-row.active-menu .titlebar-style-arrow {
+  transform: rotate(180deg);
+}
+.titlebar-style-arrow {
+  transition: transform 0.2s ease;
+}
+/* --- RESPONSIVE: desktop (sidebar ya existe, ajustar ancho) --- */
+@media (min-width: 1024px) {
+  .settings-panel {
+    width: min(320px, 30vw);
+  }
+}

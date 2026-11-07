@@ -1,0 +1,28 @@
+<!-- 2. PANTALLA DETALLES DE MUSICA -->
+<section id="view-detail" style="display: none;">
+    <header class="detail-header">
+        <div class="header-content">
+            <button class="back-circle-btn" onclick="showMainView()">
+                <l-icon name="arrow-back"></l-icon>
+            </button>
+
+            <div class="header-info">
+                <p class="label">Carpeta seleccionada</p>
+                <h1 id="current-folder-title">Carpeta</h1>
+            </div>
+        </div>
+        <div class="header-bg-blob"></div>
+    </header>
+
+    <main class="content list-container">
+        <div class="list-stats" id="folder-stats-info">Playlist • Local</div>
+        <div class="search-container">
+            <l-icon name="search"></l-icon>
+            <input 
+                id="song-search"
+                type="search"
+                placeholder="Buscar en esta carpeta...">
+        </div>
+        <ul id="song-list" class="song-list"></ul>
+    </main>
+</section>

@@ -1,0 +1,358 @@
+body {
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+  height: 100vh !important;
+  width: 100vw !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#desktop-titlebar.custom[style] {
+  display: flex !important;
+  align-items: center;
+  position: relative;
+}
+
+#desktop-titlebar {
+  flex-shrink: 0 !important;
+  height: 30px !important;
+  background: var(--bg-titlebar-custom);
+  color: var(--text-titlebar-custom);
+  border-bottom: var(--border-bottom-titlebar);
+  padding: 0px;
+  align-items: center;
+  user-select: none;
+  z-index: 99999 !important;
+  box-sizing: border-box;
+  -webkit-app-region: drag;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  user-select: none;
+}
+
+.logo-titlebar {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  user-select: none;
+}
+
+#app {
+  flex-grow: 1 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  box-sizing: border-box;
+}
+
+#app > div,
+#app > section {
+  max-height: 100% !important;
+  box-sizing: border-box;
+}
+
+html.native-app #app {
+  height: calc(100vh - 30px) !important;
+}
+
+/* controles */
+.window-controls {
+  display: flex;
+  align-items: center;
+}
+.ctrl-btn {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+.ctrl-btn l-icon {
+  font-size: 1rem;
+  color: var(--color-btn-ctrl);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* CUSTOM */
+#desktop-titlebar.custom .window-controls {
+  order: 1;
+  margin-left: auto;
+  gap: 6px;
+}
+#desktop-titlebar.custom .line {
+  border-left: 1px solid var(--line-divider);
+  height: 20px;
+  margin: 0 2px;
+}
+#desktop-titlebar.custom .ctrl-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 25%;
+  background: var(--bg-btn-ctrl);
+  border: var(--border-btn-ctrl);
+}
+#desktop-titlebar.custom .btn-close:hover,
+#desktop-titlebar.custom .btn-minimize:hover,
+#desktop-titlebar.custom .btn-maximize:hover,
+#desktop-titlebar.custom .btn-settings:hover {
+  border: none !important;
+}
+#desktop-titlebar.custom .ctrl-btn l-icon{
+  color: var(--color-btn-ctrl);
+}
+#desktop-titlebar.custom .btn-close:hover {
+  background: #b6443ef1 !important;
+}
+#desktop-titlebar.custom .btn-close:hover l-icon{
+  color: #fff !important;
+}
+#desktop-titlebar.custom .ctrl-btn:hover {
+  background: var(--accent-2);
+  box-shadow: 0 0 10px var(--shadow-btn-ctrl);
+}
+#desktop-titlebar.custom .ctrl-btn:hover l-icon {
+  color: var(--color-icons-ctrl);
+}
+
+/* NATIVO */
+#desktop-titlebar.native {
+  display: flex;
+  justify-content: flex-start; /* Alinea los elementos desde la izquierda */
+  align-items: center;
+  position: relative;
+}
+/* El contenedor del título e icono se queda a la izquierda */
+#desktop-titlebar.native .title-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* Separación desde el borde izquierdo de la ventana */
+  z-index: 2;
+}
+/* El título ya no va en absoluto al centro, sino estático al lado del logo */
+#desktop-titlebar.native .title {
+  position: static !important;
+  transform: none !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 5px;
+  pointer-events: none;
+  user-select: none;
+}
+#desktop-titlebar.native .window-controls {
+  order: 1;
+  margin-left: auto; /* Empuja los botones completamente hacia la derecha */
+  gap: 0px; 
+  height: 100%;
+  z-index: 2;
+}
+#desktop-titlebar.native .line {
+  display: none;
+}
+#desktop-titlebar.native .btn-settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 100%;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  transition: background 0.15s ease;
+}
+#desktop-titlebar.native .btn-settings l-icon {
+  color: var(--color-text);
+}
+#desktop-titlebar.native .btn-settings:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+/* Botones de Minimizar, Maximizar y Cerrar nativos */
+#desktop-titlebar.native .ctrl-btn:not(.btn-settings) {
+  width: 46px;
+  height: 100%;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  margin: 0;
+  transition: background 0.15s ease;
+}
+#desktop-titlebar.native .ctrl-btn:not(.btn-settings) l-icon {
+  color: var(--color-text);
+}
+#desktop-titlebar.native .ctrl-btn:not(.btn-settings):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+/* El botón de cerrar clásico de Windows con fondo rojo en hover */
+#desktop-titlebar.native .btn-close:hover {
+  background: #e81123 !important;
+}
+#desktop-titlebar.native .btn-close:hover l-icon {
+  color: #fff !important;
+}
+
+/* MACOS */
+#desktop-titlebar.macos .window-controls {
+  order: 0;
+  margin-right: auto;
+  margin-left: 0;
+  gap: 8px;
+}
+
+#desktop-titlebar.macos {
+  position: relative;
+}
+
+#desktop-titlebar.macos .btn-settings {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  margin: 0; 
+}
+
+#desktop-titlebar.macos .logo-titlebar {
+  display: none;
+}
+
+#desktop-titlebar.macos .line {
+  display: none;
+}
+
+#desktop-titlebar.macos .btn-close,
+#desktop-titlebar.macos .btn-minimize,
+#desktop-titlebar.macos .btn-maximize,
+#desktop-titlebar.macos .btn-settings{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15);
+  transition: filter 0.15s ease;
+}
+
+#desktop-titlebar.macos .btn-close {
+  background: #ff5f57;
+  order: 1;
+}
+#desktop-titlebar.macos .btn-minimize {
+  background: #febc2e;
+  order: 2;
+}
+#desktop-titlebar.macos .btn-maximize {
+  background: #28c840;
+  order: 3;
+}
+#desktop-titlebar.macos .btn-settings {
+  background: var(--color-btn-ctrl);
+}
+
+#desktop-titlebar.macos .btn-close l-icon,
+#desktop-titlebar.macos .btn-minimize l-icon,
+#desktop-titlebar.macos .btn-maximize l-icon,
+#desktop-titlebar.macos .btn-settings l-icon {
+  opacity: 0;
+  width: 9px;
+  height: 9px;
+  color: rgb(0, 0, 0);
+  transition: opacity 0.1s ease;
+}
+
+#desktop-titlebar.macos .window-controls:hover .btn-close l-icon,
+#desktop-titlebar.macos .window-controls:hover .btn-minimize l-icon,
+#desktop-titlebar.macos .window-controls:hover .btn-maximize l-icon,
+#desktop-titlebar.macos .window-controls:hover .btn-settings l-icon {
+  opacity: 1;
+}
+
+#desktop-titlebar.macos .btn-close:active,
+#desktop-titlebar.macos .btn-minimize:active,
+#desktop-titlebar.macos .btn-maximize:active,
+#desktop-titlebar.macos .btn-settings:active {
+  filter: brightness(0.85);
+}
+
+/* Linux */
+#desktop-titlebar.linux .window-controls {
+  order: 1;
+  margin-left: auto;
+  gap: 4px;          
+  padding-right: 8px; 
+}
+
+#desktop-titlebar.linux .line {
+  display: none;
+}
+
+#desktop-titlebar.linux .btn-settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px; 
+  height: 25px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s ease;
+}
+
+#desktop-titlebar.linux .btn-settings l-icon{
+  color: var(--color-text);
+}
+
+#desktop-titlebar.linux .ctrl-btn.btn-settings:hover {
+  background: var(--bg-btn-hover-light);
+}
+
+#desktop-titlebar.linux .ctrl-btn:not(.btn-settings) {
+  width: 25px;  
+  height: 25px;
+  border-radius: 50%;
+  margin: 0 4px; 
+  background: transparent;
+}
+
+#desktop-titlebar.linux .ctrl-btn:not(.btn-settings) l-icon{
+  color: var(--color-text);
+}
+
+#desktop-titlebar.linux .ctrl-btn:not(.btn-settings):hover {
+  background: var(--bg-btn-hover-light);
+}
+
+/* BOTÓN DE CERRAR FIJO EN ROJO PARA LINUX */
+#desktop-titlebar.linux .btn-close {
+  background: #ff5f56 !important;
+}
+
+#desktop-titlebar.linux .btn-close l-icon {
+  color: #000 !important;
+}
+
+/* Opcional: si quieres que al pasar el mouse encima solo haga un ligero brillo/efecto */
+#desktop-titlebar.linux .btn-close:hover {
+  filter: brightness(0.9);
+}

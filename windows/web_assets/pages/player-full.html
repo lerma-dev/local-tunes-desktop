@@ -1,0 +1,49 @@
+<!-- 6. PANTALLA REPRODUCTOR COMPLETO -->
+<section id="view-player-full" class="full-player">
+    <button class="close-full" onclick="hideFullPlayer()">
+        <l-icon name="chevron-down"></l-icon>
+    </button>
+    <div class="full-content">
+        <div class="full-album-art" id="album-art-container">
+            <l-icon id="default-icon" name="musical-notes"></l-icon>
+            <canvas id="visualizer"></canvas>
+        </div>
+        <div class="full-info">
+            <div class="marquee-container">
+                <h2 id="full-track-name" class="marquee-text">Sin reproducir</h2>
+            </div>
+            <strong id="full-artist-name"></strong>
+        </div>  
+        <div class="full-progress">
+            <div class="progress-container" id="full-progress-container">
+                <div id="full-progress-bar" class="progress-bar">
+                    <div class="progress-thumb"></div>
+                </div>
+            </div>
+            <div class="time-labels">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
+            </div>
+        </div>
+        <div class="full-controls">
+            <button id="full-prev-btn">
+                <l-icon name="play-back"></l-icon>
+            </button>
+            <button id="full-play-btn" class="main-play">
+                <l-icon id="full-play-icon" name="play"></l-icon>
+            </button>
+            <button id="full-next-btn">
+                <l-icon name="play-forward"></l-icon>
+            </button>
+        </div>
+        <div class="extra-controls">
+            <button class="mode-btn" onclick="mode();">
+                <l-icon id="mode-icon" name="repeat"></l-icon>
+            </button>
+        </div>
+
+        <!-- ECUALIZADOR: se renderiza desde equalizer-ui.js al reproducir la primera canción -->
+        <div id="eq-panel-container"></div>
+
+    </div>
+</section>

@@ -1,0 +1,25 @@
+<!-- MINI-REPRODUCTOR -->
+<section class="mini-player" onclick="showFullPlayer()">
+  <div class="progress-container" id="progress-container">
+    <div id="progress-bar" class="progress-bar"></div>
+  </div>
+  <div class="player-flex">
+    <div class="album-art-mini" id="mini-album-art">
+      <l-icon id="mini-default-icon" name="musical-notes"></l-icon>
+    </div>
+    <div class="track-info">
+      <div class="marquee-container">
+        <strong id="track-name" class="marquee-text">Sin reproducir</strong>
+      </div>
+      <strong id="artist-name"></strong>
+    </div>
+    <div class="controls" onclick="event.stopPropagation()">
+      <button id="play-btn">
+        <l-icon id="play-icon" name="play"></l-icon>
+      </button>
+      <button id="next-btn">
+        <l-icon name="play-forward"></l-icon>
+      </button>
+    </div>
+  </div>
+</section>

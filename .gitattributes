@@ -1,0 +1,2 @@
+# Excluir los archivos RTF del cálculo de lenguajes de GitHub Linguist
+*.rtf linguist-vendored

@@ -1,0 +1,45 @@
+/* styles/base/variables.css */
+:root {
+  --bg: #08070f;
+  --bg-secondary: #0e0c1a;
+  --color-secondary: #150e36;
+  --color-on-secondary: #dcd2ff;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-bg-hover: rgba(255, 255, 255, 0.07);
+  --player-bg: #0d0b1c;
+
+  --text: white;
+  --text-dim: rgba(220, 210, 255, 0.45);
+  --text-muted: rgba(220, 210, 255, 0.22);
+
+  --accent: #a78bfa;
+  --accent-2: #e879f9;
+  --accent-glow: rgba(167, 139, 250, 0.35);
+  --accent-gradient: linear-gradient(135deg, #a78bfa, #e879f9);
+  --accent-gradient-soft: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.12),
+    rgba(232, 121, 249, 0.12)
+  );
+
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(167, 139, 250, 0.08);
+
+  --linear-gradient: linear-gradient(180deg, #130f22 0%, #08070f 100%);
+
+  --font-display: "PlayfairDisplay", sans-serif;
+  --font-main: "Outfit", sans-serif;
+
+  --border-radius: 20px;
+  --border-radius-sm: 12px;
+  --border-radius-lg: 28px;
+  --sidebar-width: 250px;
+
+  --scrollbar-thumb-bg: rgba(167, 139, 250, 0.15);
+  --scrollbar-thumb-hover: rgba(167, 139, 250, 0.35);
+
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 40px rgba(167, 139, 250, 0.18);
+}

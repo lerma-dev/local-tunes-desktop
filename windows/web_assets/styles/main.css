@@ -1,0 +1,30 @@
+/* CONFIGARACION INICIAL (base) */
+@import "./base/variables.css";
+@import "./base/themes.css";
+@import "./base/reset.css";
+@import "./base/fonts.css";
+
+/* ESTRUCTURA Y MOVIMIENTO (layouts) */
+@import "./layouts/animations.css";
+@import "./layouts/views-main.css";
+@import "./layouts/view-detail.css";
+@import "./layouts/view-player-full.css";
+@import "./layouts/mini-player.css";
+@import "./layouts/tab-bar.css";
+@import "./layouts/desktop-titlebar.css";
+
+/* ELEMENTOS INTERCATIVOS (components) */
+@import "./components/toast.css";
+@import "./components/modals.css";
+@import "./components/cards.css";
+@import "./components/searchbar.css";
+@import "./components/buttons.css";
+
+/* SETTINGS ASIDE */
+@import "./components/settings.css";
+
+/* ECUALIZADOR */
+@import "./components/equalizer.css";
+
+/* RESPONSIVE */
+@import "./layouts/responsive.css";

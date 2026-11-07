@@ -1,0 +1,39 @@
+/* --- BUSCADOR PREMIUM --- */
+.search-container {
+  margin: 10px 15px 18px 15px;
+  background: var(--glass);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid var(--glass-border);
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.search-container:focus-within {
+  background: rgba(167, 139, 250, 0.06);
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+.search-container l-icon {
+  font-size: 1.2rem;
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+#song-search,
+.search-song {
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 13px 10px;
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: var(--font-main);
+  outline: none;
+}
+
+#song-search::placeholder,
+.search-song::placeholder {
+  color: var(--text-muted);
+}

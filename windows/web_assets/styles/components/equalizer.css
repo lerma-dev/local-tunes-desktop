@@ -1,0 +1,325 @@
+/* ============================================================
+   equalizer.css
+   ============================================================ */
+
+#eq-panel-container {
+    width: 100%;
+}
+
+.eq-panel {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-sm);
+    padding: 14px 16px 16px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Highlight al abrir desde Ajustes */
+.eq-panel--highlight {
+    box-shadow: 0 0 0 2px var(--accent), 0 0 20px var(--accent-glow);
+    border-color: var(--accent);
+}
+
+/* ─── ENCABEZADO ── */
+.eq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.eq-header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.eq-icon-wrap {
+    width: 28px;
+    height: 28px;
+    background: var(--glass-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.eq-icon-wrap l-icon {
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
+.eq-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: var(--font-main);
+}
+
+.eq-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ─── BOTÓN 8D ── */
+.eq-btn-8d {
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1.5px solid rgba(167, 139, 250, 0.3);
+    background: rgba(167, 139, 250, 0.07);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-display);
+}
+
+.eq-btn-8d:hover {
+    background: rgba(167, 139, 250, 0.14);
+    border-color: var(--accent);
+}
+
+.eq-btn-8d.active {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: var(--shadow-glow);
+    animation: pulse8d 2s ease-in-out infinite;
+}
+
+@keyframes pulse8d {
+    0%, 100% { box-shadow: 0 0 12px var(--accent-glow); }
+    50%       { box-shadow: 0 0 24px rgba(167, 139, 250, 0.6); }
+}
+
+/* ─── SWITCH ON/OFF ── */
+.eq-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.eq-toggle-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-family: var(--font-main);
+}
+
+.eq-switch {
+    width: 34px;
+    height: 19px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid var(--glass-border);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.25s, border-color 0.25s;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.eq-switch.on {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+}
+
+.eq-switch-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    transition: left 0.22s cubic-bezier(.4,0,.2,1), background 0.2s;
+    pointer-events: none;
+}
+
+.eq-switch.on .eq-switch-knob {
+    left: 17px;
+    background: #fff;
+}
+
+/* ─── BANDAS ── */
+.eq-bands {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    transition: opacity 0.3s;
+}
+
+.eq-bands.eq-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.eq-band {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 4px;
+}
+
+.eq-band-val {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--accent);
+    min-height: 12px;
+    line-height: 1;
+    font-family: var(--font-main);
+}
+
+.eq-band-lbl {
+    font-size: 8px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    font-family: var(--font-main);
+}
+
+/* ─── SLIDERS VERTICALES ── */
+.eq-slider-wrap {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="range"].eq-slider {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 20px;
+    height: 66px;
+    cursor: pointer;
+    accent-color: var(--accent);
+    background: transparent;
+}
+
+input[type="range"].eq-slider::-webkit-slider-runnable-track {
+    background: var(--glass-border);
+    width: 3px;
+    border-radius: 2px;
+}
+
+input[type="range"].eq-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+input[type="range"].eq-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+input[type="range"].eq-slider::-moz-range-track {
+    background: var(--glass-border);
+    width: 3px;
+    border-radius: 2px;
+}
+
+input[type="range"].eq-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+/* ─── PRESETS ── */
+.eq-presets {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.eq-preset-select {
+    flex: 1;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    font-size: 11px;
+    font-family: var(--font-main);
+    border-radius: var(--border-radius-sm);
+    padding: 7px 10px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.eq-preset-select:hover,
+.eq-preset-select:focus {
+    border-color: rgba(167, 139, 250, 0.4);
+}
+
+.eq-preset-select option {
+    background: var(--bg-secondary);
+    color: var(--text);
+}
+
+.eq-reset-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--border-radius-sm);
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.eq-reset-btn:hover {
+    border-color: rgba(167, 139, 250, 0.4);
+    color: var(--accent);
+}
+
+.eq-reset-btn l-icon {
+    font-size: 1.1rem;
+    color: inherit;
+}
+
+/* ─── MÓVIL ── */
+@media (max-width: 599px) {
+    .eq-panel {
+        padding: 12px 12px 14px;
+        gap: 12px;
+    }
+
+    .eq-slider-wrap { height: 60px; }
+
+    input[type="range"].eq-slider { height: 56px; }
+
+    .eq-bands { gap: 2px; }
+
+    .eq-band-val,
+    .eq-band-lbl { font-size: 7.5px; }
+}
+
+/* ─── DESKTOP ── */
+@media (min-width: 1024px) {
+    .eq-slider-wrap { height: 58px; }
+    input[type="range"].eq-slider { height: 54px; }
+}
